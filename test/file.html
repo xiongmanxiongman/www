@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>上传文件接口测试</title>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<style>
+.uploadFileA{ width:800px;}
+.uploadFileA .imgA{max-height:60px; min-height:60px; _height:60px;}
+.uploadFileA .fileA{ display:inline-block; vertical-align:middle; width:120px; overflow:hidden;}
+.uploadFileA .btnUploadA{ display:inline-block; vertical-align:middle; margin:0 10px;}
+.uploadFileA .btnDelA{ display:inline-block; vertical-align:middle; color:#333; text-decoration:none; font-size:14px;}
+.uploadFileA .btnB{ display:inline-block; vertical-align:middle; color:#333; text-decoration:none; font-size:14px; margin:20px;}
+.uploadFileA td{ padding:0 6px; border-bottom:1px dashed #ccc;}
+</style>
+</head>
+
+<body>
+
+<div id="uploadFileA" class="uploadFileA">
+<table>
+	<tbody>
+    	<tr>
+            <td><input class="fileA" type="file"></td>
+            <td><img class="imgA" src="" alt=""></td>
+            <td><input class="btnUploadA" type="button" value="上传"></td>
+            <td><a class="btnDelA" href="javascript:;"></a></td>
+        </tr>
+    </tbody>
+</table>
+<a href="javascript:;" class="btnB">添加</a>
+</div>
+
+<script>
+
+$('#uploadFileA').on('click','.btnUploadA',function(){
+	var imgA = $(this).parent().parent().find('.imgA');
+	var fd = new FormData();
+	fd.append('file', $(this).parent().parent().find('.fileA').get(0).files[0]);
+	$.ajax({
+		 url: "/api/koa/upload",
+		 type: "POST",
+		 processData: false,
+		 contentType: false,
+		 data: fd,
+	});
+});
+$('#uploadFileA').on('click','.btnDelA',function(){
+	$(this).parent().parent().remove();
+});
+$('#uploadFileA').on('click','.btnB',function(){
+	$('#uploadFileA tbody').append('<tr><td><input class="fileA" type="file"></td><td><img class="imgA" src="" alt=""></td><td><input class="btnUploadA" type="button" value="上传"></td><td><a class="btnDelA" href="javascript:;">删除</a></td></tr>');
+});
+</script>
+
+
+</body>
+</html>

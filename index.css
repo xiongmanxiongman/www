@@ -1,0 +1,304 @@
+@charset "utf-8";
+body, h1, h2, h3, h4, h5, h6, p, table, td, th, tr, ul, ol, li, dl, dt, dd, input, textarea, button, form {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    outline: 0;
+}
+
+li {
+    list-style: none;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+i, em {
+    font-style: normal;
+}
+
+b, strong, th {
+    font-weight: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+a img {
+    border: 0;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.clearfix:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+.clearfix {
+    zoom: 1
+}
+
+body {
+    font-family: Microsoft YaHei, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+.x-wrap {
+    display: flex;
+}
+
+.x-navbar {
+    background: #3c3f41;
+    display: flex;
+}
+
+.x-navbar ul {
+    display: flex;
+    flex-wrap: wrap;
+    border-left: 1px solid #4b4b4b;
+    border-right: 1px solid #4b4b4b;
+}
+
+.x-navbar .on {
+    background: #515658;
+}
+
+.x-navbar li a {
+    display: block;
+    min-width: 98px;
+    padding: 0 7px;
+    line-height: 42px;
+    text-align: center;
+    color: #fff;
+}
+
+.x-navbar li a:hover {
+    background: #515658;
+}
+
+.x-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #515658;
+}
+
+.x-logo h1 a {
+    width: 140px;
+    display: block;
+    line-height: 42px;
+    color: #fff;
+    text-align: center;
+}
+
+.x-login {
+    display: flex;
+}
+
+.x-login a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 6px;
+    text-align: center;
+    line-height: 42px;
+    color: #fff;
+}
+
+.x-login a:hover {
+    background: #515658;
+}
+
+.x-login .state-off {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #909399;
+}
+
+.x-login span {
+    padding: 0 6px;
+    max-width: 84px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.x-login .state-on {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #67C23A;
+}
+
+.x-dialog {
+    display: none;
+    width: 448px;
+    top: 10%;
+    left: 50%;
+    margin-left: -224px;
+    background: #fff;
+    position: fixed;
+    z-index: 12;
+    padding: 56px 0;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.x-dialog .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.x-dialog .close a {
+    text-align: center;
+    line-height: 42px;
+    display: block;
+    width: 42px;
+    font-size: 22px;
+    font-weight: normal;
+    color: #3083EB;
+}
+
+.x-dialog .close a:hover {
+    color: #ff3300;
+    background: #E3F0FC;
+}
+
+.x-dialog dd input {
+    height: 28px;
+    line-height: 28px;
+    width: 224px;
+    padding: 0 6px;
+}
+
+.x-dialog dl {
+    margin-bottom: 28px;
+    display: flex;
+}
+
+.x-dialog dt {
+    width: 112px;
+    text-align: right;
+}
+
+.x-dialog dt strong {
+    line-height: 34px;
+    padding-right: 14px;
+}
+
+.x-dialog .btn a {
+    display: none;
+    text-align: center;
+    margin: 0 auto;
+    border: 1px solid #BBCBDF;
+    width: 112px;
+    color: #536083;
+    line-height: 34px;
+}
+
+.x-dialog .btn a:hover {
+    color: #3083EB;
+    background: #E3F0FC;
+    border: 1px solid #fff;
+}
+
+.x-shadow {
+    display: none;
+    background: #000;
+    opacity: .3;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 12;
+}
+
+.x-sidebar {
+    background: #3c3f41;
+    min-height: 100vh;
+}
+
+.x-menu {
+    width: 140px;
+}
+
+.x-menu ul {
+    display: none;
+}
+
+.x-menu li {
+    border-top: 1px solid #3c3f41;
+    border-bottom: 1px solid #3c3f41;
+}
+
+.x-menu .on a {
+    background: #515658;
+    border-left: 1px solid #3083EB;
+    border-right: 1px solid #3083EB;
+}
+
+.x-menu li a {
+    display: block;
+    line-height: 42px;
+    color: #fff;
+    text-align: center;
+}
+
+.x-menu li a:hover {
+    background: #515658;
+    border-left: 1px solid #3083EB;
+    border-right: 1px solid #3083EB;
+}
+
+.x-container {
+    flex: 1;
+}
+
+.x-main {
+    display: flex;
+    flex: 1;
+    overflow-x: auto;
+    flex-direction: column;
+}
+
+.x-content {
+    padding: 14px;
+}
+
+.x-outer {
+    font-size: 10px;
+    text-size-adjust: none;
+}
+
+.x-footer p {
+    text-align: center;
+    color: #606266;
+    height: 28px;
+    line-height: 28px;
+}
+
+/**
+ *  @ Created by 熊满
+ *  @ Tel:15201214083
+ */

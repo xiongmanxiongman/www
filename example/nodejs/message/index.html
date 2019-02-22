@@ -1,0 +1,80 @@
+<!--#include virtual="/tpl/header.html"-->
+<link rel="stylesheet" href="//npm.ijilu.cn/bootstrap/dist/css/bootstrap.min.css?v=<!--#echo var='ver'-->">
+<style>
+    [v-cloak] {
+        display: none;
+    }
+
+    .container {
+        margin: 0;
+    }
+
+    .table {
+        margin-top: 28px;
+    }
+</style>
+<!--#include virtual="/tpl/link.html"-->
+<div class="container" id="content">
+    <!--列表-->
+    <div class="row">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li v-show="pageCount>1&&nowPage!=1" @click="fnPrevPage()" class="page-item"><a class="page-link"
+                                                                                                href="javascript:;">Previous</a>
+                </li>
+                <li @click="getPageData(n)" :class="{ 'active':n==nowPage,'page-item':true}" v-for="n in pageCount"
+                    v-cloak><a class="page-link" href="javascript:;">{{n}}</a></li>
+                <li v-show="pageCount>1&&nowPage!=pageCount" @click="fnNextPage()" class="page-item"><a
+                        class="page-link" href="javascript:;">Next</a></li>
+            </ul>
+        </nav>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>用户名</th>
+                <th>留言</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-show="msgList.length==0">
+                <td colspan="4" class="text-center text-danger">
+                    暂无留言....
+                </td>
+            </tr>
+            <tr v-for="(item,index) in msgList" v-cloak>
+                <td>{{item.ID}}</td>
+                <td>{{item.username}}</td>
+                <td>{{item.message}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--列表-End-->
+    <!--添加留言-->
+    <div class="row">
+        <form>
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" class="form-control" id="username" v-model="username" placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label for="message">留言</label>
+                <textarea class="form-control" id="message" v-model="message" placeholder="Enter message"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="reset" class="btn">重置</button>
+                <button type="button" @click="addMsg" class="btn btn-primary">提交</button>
+
+            </div>
+
+        </form>
+    </div>
+    <!--添加留言-End-->
+</div>
+<!--#include virtual="/tpl/footer.html"-->
+<script src="//npm.ijilu.cn/jquery/dist/jquery.min.js?v=<!--#echo var='ver'-->"></script>
+<script src="//npm.ijilu.cn/bootstrap/dist/js/bootstrap.min.js?v=<!--#echo var='ver'-->"></script>
+<script src="//npm.ijilu.cn/vue/dist/vue.min.js?v=<!--#echo var='ver'-->"></script>
+<script src="index.js?v=<!--#echo var='ver'-->"></script>
+<!--#include virtual="/tpl/script.html"-->

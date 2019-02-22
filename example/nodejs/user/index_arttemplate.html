@@ -1,0 +1,87 @@
+{{include '/var/www/tpl/header.html'}}
+<link rel="stylesheet" type="text/css" href="/example/nodejs/user/index.css">
+{{include '/var/www/tpl/link_arttemplate.html'}}
+<div class="fn clearfix">
+    <div class="item newUser">
+        <a id="newUser" href="javascript:;">新建用户</a>
+    </div>
+    <div class="item">
+        <input id="sUsername" type="text" placeholder="用户名搜索">
+    </div>
+    <div class="item">
+        <input id="sTel" type="text" placeholder="手机搜索">
+    </div>
+    <div class="item">
+        <input id="sMail" type="text" placeholder="邮箱搜索">
+    </div>
+</div>
+<div class="title">
+    <nav class="pagination" id="pagination">
+        <a class="previous" href="javascript:;">上一页</a>
+        <ul class="paginationList"><% for(var i = 0; i < count; i++){ %>
+            <li><a href="javascript:;"><%= i+1 %></a></li><% } %>
+        </ul>
+        <a class="next" href="javascript:;">下一页</a>
+    </nav>
+</div>
+<div class="tb">
+    <table>
+        <tbody id="list">
+        <tr>
+            <tr><th>ID</th><th>用户名</th><th>手机</th><th>邮箱</th><th>备注</th></tr>
+        </tr>
+        {{each data value index}}
+        <tr>
+            <td>{{value.i}}</td><td>{{value.u}}</td><td>{{value.t}}</td><td>{{value.m}}</td><td>{{value.r}}</td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>
+<div class="popup" id="popup">
+    <div class="tit">
+        <div class="close" id="close">
+            <a href="javascript:;">&times;</a>
+        </div>
+    </div>
+    <dl class="clearfix">
+        <dt><strong>用户名</strong></dt>
+        <dd>
+            <input id="username" type="text">
+        </dd>
+    </dl>
+    <dl class="clearfix">
+        <dt><strong>手机</strong></dt>
+        <dd>
+            <input id="tel" type="text">
+        </dd>
+    </dl>
+    <dl class="clearfix">
+        <dt><strong>邮箱</strong></dt>
+        <dd>
+            <input id="mail" type="text">
+        </dd>
+    </dl>
+    <dl class="clearfix">
+        <dt><strong>备注</strong></dt>
+        <dd>
+            <textarea id="remark"></textarea>
+        </dd>
+    </dl>
+    <!--item-->
+    <div class="btn clearfix">
+        <a id="add" href="javascript:;">新建</a>
+        <a id="edit" href="javascript:;">编辑</a>
+    </div>
+</div>
+<!--popup-->
+        </div>
+    </div>
+</div>
+</body>
+<script src="/js/index.js"></script>
+<script>
+    var countA = {{count}};
+</script>
+<script src="/example/nodejs/user/arttemplate.js"></script>
+{{include '/var/www/tpl/script.html'}}

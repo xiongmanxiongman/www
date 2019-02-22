@@ -1,0 +1,47 @@
+<!--#include virtual="/example/jsBase/jsBaseHeader.html"-->
+<table class="tb">
+    <thead>
+    <tr>
+        <th>公式</th>
+        <th>结果</th>
+    </tr>
+    </thead>
+    <tbody id="tb"></tbody>
+</table>
+<!--#include virtual="/tpl/footer.html"-->
+<script>
+    var oTb = document.getElementById('tb');
+    var str = '';
+    str += '<tr><td>0.1 + 0.2</td><td>' + (0.1 + 0.2) + '</td></tr>';
+    str += '<tr><td>isFinite(Number.MAX_VALUE + 1)</td><td>' + isFinite(Number.MAX_VALUE + 1) + '</td></tr>';
+    str += '<tr><td>NaN == NaN</td><td>' + (NaN == NaN) + '</td></tr>';
+    str += '<tr><td>isNaN(NaN)</td><td>' + (isNaN(NaN)) + '</td></tr>';
+    str += '<tr><td>isNaN(10)</td><td>' + (isNaN(10)) + '</td></tr>';//false  10 is a number
+    str += '<tr><td>isNaN("10")</td><td>' + (isNaN("10")) + '</td></tr>';//false  can be converted to number 10
+    str += '<tr><td>isNaN("blue")</td><td>' + (isNaN("blue")) + '</td></tr>';//true  cannot be converted to a number
+    str += '<tr><td>isNaN(true)</td><td>' + (isNaN(true)) + '</td></tr>';//false  can be converted to number 1
+    str += '<tr><td>Number("Hello world!")</td><td>' + (Number("Hello world!")) + '</td></tr>';
+    str += '<tr><td>Number("")</td><td>' + (Number("")) + '</td></tr>';
+    str += '<tr><td>Number("000011")</td><td>' + (Number("000011")) + '</td></tr>';
+    str += '<tr><td>Number(true)</td><td>' + (Number(true)) + '</td></tr>';
+    str += '<tr><td>parseInt("1234blue")</td><td>' + (parseInt("1234blue")) + '</td></tr>';
+    str += '<tr><td>parseInt("")</td><td>' + (parseInt("")) + '</td></tr>';
+    str += '<tr><td>parseInt("0xA")</td><td>' + (parseInt("0xA")) + '</td></tr>';//10 - hexadecimal
+    str += '<tr><td>parseInt(22.5)</td><td>' + (parseInt(22.5)) + '</td></tr>';
+    str += '<tr><td>parseInt("70")</td><td>' + (parseInt("70")) + '</td></tr>';//70 - decimal
+    str += '<tr><td>parseInt("0xf")</td><td>' + (parseInt("0xf")) + '</td></tr>';//15  hexadecimal
+    str += '<tr><td>parseInt("AF", 16)</td><td>' + (parseInt("AF", 16)) + '</td></tr>';
+    str += '<tr><td>parseInt("AF")</td><td>' + (parseInt("AF")) + '</td></tr>';
+    str += '<tr><td>parseInt("10", 2)</td><td>' + (parseInt("10", 2)) + '</td></tr>';//2  parsed as binary
+    str += '<tr><td>parseInt("10", 8)</td><td>' + (parseInt("10", 8)) + '</td></tr>';//8  parsed as octal
+    str += '<tr><td>parseInt("10", 10)</td><td>' + (parseInt("10", 10)) + '</td></tr>';//10  parsed as decimal
+    str += '<tr><td>parseInt("10", 16)</td><td>' + (parseInt("10", 16)) + '</td></tr>';//16  parsed as hexadecimal
+    str += '<tr><td>parseFloat("1234blue")</td><td>' + (parseFloat("1234blue")) + '</td></tr>';//1234 - integer
+    str += '<tr><td>parseFloat("0xA")</td><td>' + (parseFloat("0xA")) + '</td></tr>';
+    str += '<tr><td>parseFloat("22.5")</td><td>' + (parseFloat("22.5")) + '</td></tr>';
+    str += '<tr><td>parseFloat("22.34.5")</td><td>' + (parseFloat("22.34.5")) + '</td></tr>';
+    str += '<tr><td>parseFloat("0908.5")</td><td>' + (parseFloat("0908.5")) + '</td></tr>';
+    str += '<tr><td>parseFloat("3.125e7")</td><td>' + (parseFloat("3.125e7")) + '</td></tr>';
+    oTb.innerHTML = str;
+</script>
+<!--#include virtual="/tpl/script.html"-->

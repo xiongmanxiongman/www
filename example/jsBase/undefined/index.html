@@ -1,0 +1,28 @@
+<!--#include virtual="/example/jsBase/jsBaseHeader.html"-->
+<p>var message;</p>
+<table class="tb">
+    <thead>
+    <tr>
+        <th>公式</th>
+        <th>结果</th>
+    </tr>
+    </thead>
+    <tbody id="tb"></tbody>
+</table>
+<!--#include virtual="/tpl/footer.html"-->
+<script>
+    var oTb = document.getElementById('tb');
+    var str = '';
+    var message;
+    var foo = undefined;
+    str += '<tr><td>message == undefined</td><td>' + (message == undefined) + '</td></tr>';
+    str += '<tr><td>foo == undefined</td><td>' + (foo == undefined) + '</td></tr>';
+    str += '<tr><td>age</td><td>causes an error</td></tr>';
+    str += '<tr><td>foo</td><td>' + (foo) + '</td></tr>';
+    str += '<tr><td>message</td><td>' + (message) + '</td></tr>';
+    str += '<tr><td>typeof message</td><td>' + (typeof message) + '</td></tr>';
+    str += '<tr><td>typeof age</td><td>' + (typeof age) + '</td></tr>';
+    str += '<tr><td>1111111</td><td>' + (1111111) + '</td></tr>';
+    oTb.innerHTML = str;
+</script>
+<!--#include virtual="/tpl/script.html"-->

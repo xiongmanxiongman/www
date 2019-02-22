@@ -1,0 +1,66 @@
+<!--#include virtual="/tpl/header.html"-->
+    <style>
+        @keyframes fnRotate {
+            from{
+                transform:rotateY(0deg) rotateX(0deg);
+            }
+            to{
+                transform:rotateY(360deg) rotateX(360deg);
+            }
+        }
+        #cube{
+            width:140px;
+            height:140px;
+            margin:84px;
+            transform:rotateY(0deg) rotateX(0deg);
+            position: relative;
+            transform-style:preserve-3d;
+        }
+        #cube div{
+            width:100%;
+            height:100%;
+            position: absolute;
+            left: 0;
+            top:0;
+            opacity:.8;
+            overflow: hidden;
+        }
+        #cube .front{
+            background: #ff8e83;
+            transform:translateZ(70px);
+        }
+        #cube .back{
+            background: seagreen;
+            transform:translateZ(-70px);
+        }
+        #cube .left{
+            background: sienna;
+            transform:translateX(-70px) rotateY(-90deg);
+        }
+        #cube .top{
+            background: tomato;
+            transform:translateY(-70px) rotateX(90deg);
+        }
+        #cube .right{
+            background: dodgerblue;
+            transform:translateX(70px) rotateY(90deg);
+        }
+        #cube .bottom{
+            background: #a2ff77;
+            transform:translateY(70px) rotateX(-90deg);
+        }
+        .toRotate{
+            animation: 4s fnRotate linear infinite;
+        }
+    </style>
+<!--#include virtual="/tpl/link.html"-->
+<div id="cube" class="toRotate">
+    <div class="front"></div>
+    <div class="back"></div>
+    <div class="left"></div>
+    <div class="top"></div>
+    <div class="right"></div>
+    <div class="bottom"></div>
+</div>
+<!--#include virtual="/tpl/footer.html"-->
+<!--#include virtual="/tpl/script.html"-->

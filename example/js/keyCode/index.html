@@ -1,0 +1,37 @@
+<!--#include virtual="/tpl/header.html"-->
+<!--#include virtual="/tpl/link.html"-->
+<p>请按键盘上的任意键</p>
+<table>
+    <thead>
+    <tr>
+        <th>按键-</th>
+        <th>键值</th>
+    </tr>
+    </thead>
+    <tbody id="keycodes">
+    </tbody>
+    <tfoot>
+    <tr>
+        <th>按键-</th>
+        <th>键值</th>
+    </tr>
+    </tfoot>
+</table>
+<!--#include virtual="/tpl/footer.html"-->
+<script>
+    ;(function () {
+        var xKeyCodes = document.getElementById('keycodes');
+        var str = '';
+        document.onkeyup = function (ev) {
+            var xEvent = ev || event;
+            var xKey = xEvent.key;
+            var xKeyCode = xEvent.keyCode;
+            if (xKey == ' ') {
+                xKey = 'Space';
+            }
+            str += '<tr><td>' + xKey + '</td><td>' + xKeyCode + '</td></tr>';
+            xKeyCodes.innerHTML = str;
+        };
+    })();
+</script>
+<!--#include virtual="/tpl/script.html"-->

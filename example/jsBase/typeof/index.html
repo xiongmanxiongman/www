@@ -1,0 +1,45 @@
+<!--#include virtual="/example/jsBase/jsBaseHeader.html"-->
+<table class="tb">
+    <thead>
+    <tr>
+        <th>运算符</th>
+        <th>值</th>
+        <th>结果</th>
+    </tr>
+    </thead>
+    <tbody id="typeof"></tbody>
+</table>
+<!--#include virtual="/tpl/footer.html"-->
+<script>
+    var oTypeof = document.getElementById('typeof');
+    var str = '';
+
+    function Person(name, age, job) {
+        this.name = name;
+        this.age = age;
+        this.job = job;
+        this.sayName = sayName;
+    }
+
+    function sayName() {
+        console.log(this.name);
+    }
+    //typeof
+    str += '<tr><td>typeof</td><td>"foo"</td><td>' + (typeof "foo") + '</td></tr>';
+    str += '<tr><td>typeof</td><td>2</td><td>' + (typeof 2) + '</td></tr>';
+    str += '<tr><td>typeof</td><td>true</td><td>' + (typeof true) + '</td></tr>';
+    str += '<tr><td>typeof</td><td>undefined</td><td>' + (typeof undefined) + '</td></tr>';
+    str += '<tr><td>typeof</td><td>function abc(){}</td><td>' + (typeof function abc() {
+    }) + '</td></tr>';
+    str += '<tr><td>typeof</td><td>null</td><td>' + (typeof null) + '</td></tr>';
+    str += '<tr><td>typeof</td><td>new String()</td><td>' + (typeof new String()) + '</td></tr>';
+    str += '<tr><td>typeof</td><td>new Number()</td><td>' + (typeof new Number()) + '</td></tr>';
+    str += '<tr><td>typeof</td><td>new Array()</td><td>' + (typeof new Array()) + '</td></tr>';
+    str += '<tr><td>typeof</td><td>new Boolean()</td><td>' + (typeof new Boolean()) + '</td></tr>';
+    str += '<tr><td>typeof</td><td>new Date()</td><td>' + (typeof new Date()) + '</td></tr>';
+    str += '<tr><td>typeof</td><td>new Image()</td><td>' + (typeof new Image()) + '</td></tr>';
+    str += '<tr><td>typeof</td><td>new Person()</td><td>' + (typeof new Person()) + '</td></tr>';
+    str += '<tr><td>typeof</td><td>new Object()</td><td>' + (typeof new Object()) + '</td></tr>';
+    oTypeof.innerHTML = str;
+</script>
+<!--#include virtual="/tpl/script.html"-->

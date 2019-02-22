@@ -1,0 +1,36 @@
+<!--#include virtual="/example/jsBase/jsBaseHeader.html"-->
+<p>var num1 = 10 , num2 = 20 , s1 = "2" , s2 = "z" , b = false , f = 1.1 , o = { valueOf:function(){ return -1; } };</p>
+<table class="tb">
+    <thead>
+    <tr>
+        <th>公式</th>
+        <th>结果</th>
+    </tr>
+    </thead>
+    <tbody id="tb"></tbody>
+</table>
+<!--#include virtual="/tpl/footer.html"-->
+<script>
+    var oTb = document.getElementById('tb');
+    var str = '';
+    var num1 = 10 , num2 = 20 , s1 = "2" , s2 = "z" , b = false , f = 1.1 , o = { valueOf:function(){ return -1; } };
+    num2 = --num1 + 2;
+    str += '<tr><td>num2 = --num1 + 2</td><td>num1 = ' +num1+ ' , num2 = ' +num2+ '</td></tr>';
+    num1 = 10,num2 = 20;
+    num2 = ++num1 + 2;
+    str += '<tr><td>num2 = ++num1 + 2</td><td>num1 = ' +num1+ ' , num2 = ' +num2+ '</td></tr>';
+    num1 = 10,num2 = 20;
+    num2 = num1-- + 2;
+    str += '<tr><td>num2 = num1-- + 2</td><td>num1 = ' +num1+ ' , num2 = ' +num2+ '</td></tr>';
+    num1 = 10,num2 = 20;
+    num2 = num1++ + 2;
+    str += '<tr><td>num2 = num1++ + 2</td><td>num1 = ' +num1+ ' , num2 = ' +num2+ '</td></tr>';
+    s1++;s2++;b++;f--;o--;
+    str += '<tr><td>s1++</td><td>s1 = '+(s1)+'</td></tr>';//value becomes numeric 3
+    str += '<tr><td>s2++</td><td>s2 = '+(s2)+'</td></tr>';//value becomes NaN
+    str += '<tr><td>b++</td><td>b = '+(b)+'</td></tr>';//value becomes numeric 1
+    str += '<tr><td>f--</td><td>f = '+(f)+'</td></tr>';//value becomes 0.10000000000000009
+    str += '<tr><td>o--</td><td>o = '+(o)+'</td></tr>';//value becomes numeric 2
+    oTb.innerHTML=str;
+</script>
+<!--#include virtual="/tpl/script.html"-->

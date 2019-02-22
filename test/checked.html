@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<input type="checkbox" name="a" value="1">1<br>
+<input type="checkbox" name="b" value="2">2<br>
+<input type="checkbox" name="b" value="3">3<br>
+<input type="checkbox" name="a" value="4">4<br>
+<input type="checkbox" name="a" value="5">5<br>
+<script>
+    let jqObj = $('input[name=a]').each((index,item)=>{
+        console.log($(item).val());
+    });
+</script>
+</body>
+</html>

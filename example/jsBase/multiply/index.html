@@ -1,0 +1,24 @@
+<!--#include virtual="/example/jsBase/jsBaseHeader.html"-->
+<table class="tb">
+    <thead>
+    <tr>
+        <th>公式</th>
+        <th>结果</th>
+    </tr>
+    </thead>
+    <tbody id="tb"></tbody>
+</table>
+<!--#include virtual="/tpl/footer.html"-->
+<script>
+    var oTb = document.getElementById('tb');
+    var str = '';
+    str += '<tr><td>5 * 6</td><td>' + (5 * 6) + '</td></tr>';
+    str += '<tr><td>5 * NaN</td><td>' + (5 * NaN) + '</td></tr>';
+    str += '<tr><td>Infinity * 0</td><td>' + (Infinity * 0) + '</td></tr>';
+    str += '<tr><td>Infinity * 2</td><td>' + (Infinity * 2) + '</td></tr>';
+    str += '<tr><td>"5" * 5</td><td>' + ("5" * 5) + '</td></tr>';
+    str += '<tr><td>true * 10</td><td>' + (true * 10) + '</td></tr>';
+    str += '<tr><td>false * 10</td><td>' + (false * 10) + '</td></tr>';
+    oTb.innerHTML = str;
+</script>
+<!--#include virtual="/tpl/script.html"-->

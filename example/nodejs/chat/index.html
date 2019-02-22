@@ -1,0 +1,54 @@
+<!--#include virtual="/tpl/header.html"-->
+<link rel="stylesheet" type="text/css" href="//npm.ijilu.cn/animate.css/animate.min.css?v=<!--#echo var='ver'-->">
+<style>
+    #chat span {
+        display: inline-block;
+        padding: 14px;
+        margin: 14px;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+    }
+
+    .message {
+        display: flex;
+        opacity: .9;
+        position: fixed;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+    }
+
+    .message input {
+        width: 280px;
+        line-height: 42px;
+        padding: 0 6px;
+        height: 42px;
+        border: 1px solid #3083EB;
+    }
+
+    .message a {
+        margin: 0 14px;
+        height: 42px;
+        line-height: 42px;
+        width: 70px;
+        display: inline-block;
+        border: 1px solid #3083EB;
+        text-align: center;
+        color: #3083EB;
+        background: #E3F0FC;
+    }
+
+    .message a:hover {
+        background: #3083EB;
+        color: white;
+    }
+</style>
+<!--#include virtual="/tpl/link.html"-->
+<div id="chat"></div>
+<div class="message">
+    <input type="text" id="message"><a id="send" href="javascript:;">发送</a>
+</div>
+<!--#include virtual="/tpl/footer.html"-->
+<script src="//api.ijilu.cn:84/socket.io/socket.io.js?v=<!--#echo var='ver'-->"></script>
+<script src="index.js?v=<!--#echo var='ver'-->"></script>
+<!--#include virtual="/tpl/script.html"-->

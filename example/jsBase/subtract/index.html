@@ -1,0 +1,23 @@
+<!--#include virtual="/example/jsBase/jsBaseHeader.html"-->
+<table class="tb">
+    <thead>
+    <tr>
+        <th>公式</th>
+        <th>结果</th>
+    </tr>
+    </thead>
+    <tbody id="tb"></tbody>
+</table>
+<!--#include virtual="/tpl/footer.html"-->
+<script>
+    var oTb = document.getElementById('tb');
+    var str = '';
+    str += '<tr><td>5 - true</td><td>' + (5 - true) + '</td></tr>';//4 because true is converted to 1
+    str += '<tr><td>NaN - 1</td><td>' + (NaN - 1) + '</td></tr>';//NaN
+    str += '<tr><td>5 - 3</td><td>' + (5 - 3) + '</td></tr>';//2
+    str += '<tr><td>5 - ""</td><td>' + (5 - "") + '</td></tr>';//5 because "" is converted to 0
+    str += '<tr><td>5 - "2"</td><td>' + (5 - "2") + '</td></tr>';//3 because "2" is converted to 2
+    str += '<tr><td>5 - null</td><td>' + (5 - null) + '</td></tr>';//5 because null is converted to 0
+    oTb.innerHTML = str;
+</script>
+<!--#include virtual="/tpl/script.html"-->

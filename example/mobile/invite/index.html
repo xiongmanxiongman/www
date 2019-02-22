@@ -1,0 +1,86 @@
+<!--#include virtual="/tpl/header.html"-->
+<style>
+    .m h2{font-size: 24px;margin-bottom: 10px;}
+    .m .desc{font-size: 16px;}
+    .m h3{ font-size: 20px;margin-bottom: 20px;}
+    .m p{margin-bottom: 10px;}
+</style>
+<!--#include virtual="/tpl/link.html"-->
+<div class="m">
+    <img src="https://upload.ijilu.cn/images/mInvite/invite.png" alt="角色功能">
+    <h2>营销流程</h2>
+    <p class="desc">
+        注册成为会员后,可以邀请朋友,朋友成功注册会员并消费后,返还10%的消费金额作为佣金给推广者<br>
+        新会员注册后获得100元优惠券,30+30+20+20,满150可使用30优惠券,满100可使用20优惠券<br>
+        三种角色:<br>
+        管理员可以创建员工,停用员工,停用客户,查看图形报表,赠送优惠券,修改自己密码\员工密码\客户密码<br>
+        员工可以赠送优惠券给会员,录入会员消费信息(核心),修改密码<br>
+        会员可以查看消费的账单,查看邀请码并分享邀请朋友加入会员,查看由邀请挣取的佣金明细,查看自己的优惠券,查看自己的佣金余额<br>
+        <a target="_blank" href="//m.ijilu.cn">用户中心m.ijilu.cn</a>任意手机号可注册 <br>
+        <a target="_blank" href="//m.ijilu.cn/admin">管理中心m.ijilu.cn/admin</a>管理员账号15201214083密码1 <br>
+    </p>
+    <h3>进度8</h3>
+    <p>
+        管理员端,现在可以查看对账单了,并且有日期筛选功能<br>
+    </p>
+    <h3>进度7</h3>
+    <p>
+        管理员端,订单录入时,现在可以写入提成给推广者了<br>
+        数据安全,订单录入时,给用户增加一个总消费额,进行累计,方便日后对账<br>
+        客户端,零钱页面可以查看我的余额,可以提现了<br>
+        客户端,返现记录页面现在可以查看返现情况,已提现金额,未提现金额,总佣金收入<br>
+    </p>
+    <h3>进度6</h3>
+    <p>
+        会员端,现在设置-推荐码不能填写自己<br>
+        宣讲,完成了项目宣讲PPT<br>
+        会员端,现在可以退出登录了<br>
+        会员端,现在可以修改密码了<br>
+        管理员端,现在可以退出登录了<br>
+        管理员端,现在可以修改密码了<br>
+    </p>
+    <h3>进度5</h3>
+    <p>
+        代码优化,所有接口都经过token验证<br>
+        数据,现在店铺信息\商品类型人工写入数据库了<br>
+        会员端,现在新会员通过邀请链接注册可以正确的关联上介绍人了<br>
+        会员端,现在可以查看自己的推荐码,通过邀请码或者邀请链接让朋友注册可以进行绑定<br>
+        会员端,如果没有邀请人现在可以填写了,保证推广人的利益,邀请人填写后无法修改<br>
+        会员端,现在可以查看自己的消费记录<br>
+        <a target="_blank" href="//m.ijilu.cn">用户中心m.ijilu.cn</a>会员账号15201214084密码1现在可以看到自己的消费信息<br>
+        <a target="_blank" href="//m.ijilu.cn/admin">管理中心m.ijilu.cn/admin</a>管理员账号15201214083密码1 <br>
+        如果你愿意,可以登录管理中心为会员账号15201214084继续录入消费记录<br>
+    </p>
+    <h3>进度4</h3>
+    <p>
+        管理员现在可以录入订单了<br>
+        管理员账号15201214083密码1<br>
+        <a target="_blank" href="//m.ijilu.cn/admin">管理中心m.ijilu.cn/admin</a> <br>
+        登录后进入-订单录入<br>
+        可以对  客户15201214084 的消费信息 进行录入<br>
+    </p>
+    <h3>进度3</h3>
+    <p>
+        1.使用继承优化了代码<br>
+        2.客户登录和管理员登录使用2套代码和2套表,防止侵入<br>
+        3.所有页面增加了token验证,没有登录直接访问会被抛到登录页面<br>
+        4.客户登录,进行了11位手机号验证,允许新用户注册<br>
+        <a target="_blank" href="//m.ijilu.cn">用户中心m.ijilu.cn</a> <br>
+        5.管理员登录,进行了11位手机号验证,不允许新用户注册 <br>
+        管理员账号15201214083密码1 <br>
+        <a target="_blank" href="//m.ijilu.cn/admin">管理中心m.ijilu.cn/admin</a> <br>
+    </p>
+    <h3>进度2</h3>
+    <p>
+        1.表建立好了,客户表\员工表\订单表\优惠券表\商品类型表\店铺表\提现记录表<br>
+        2.搭建了项目目录,确定了技术方案.后台基于nodejs,koa2开发,前端考虑到移动端尽量手写原生js,图形报表使用百度echarts<br>
+    </p>
+    <h3>进度1</h3>
+    <p>
+        <a target="_blank" href="//m.ijilu.cn">用户中心m.ijilu.cn</a> <br>
+        <a target="_blank" href="//m.ijilu.cn/admin">管理中心m.ijilu.cn/admin</a> <br>
+        页面画完了<br>
+    </p>
+</div>
+<!--#include virtual="/tpl/footer.html"-->
+<!--#include virtual="/tpl/script.html"-->

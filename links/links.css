@@ -1,0 +1,6 @@
+@charset "utf-8";
+.links ul{ display: flex; flex-wrap:wrap;}
+.links li{width:140px; height:42px; position:relative; left:0; top:0; overflow:hidden;}
+.links li span{ position:absolute; top:0; left:-140px; background-color:#E3F0FC; display:block; width:140px; height:42px; z-index:2;}
+.links li a{ color: #333; line-height:42px; display:block; width:140px; text-align:center; position:absolute; left:0; top:0; z-index:3;}
+.links li a:hover{ color:#3083EB; }

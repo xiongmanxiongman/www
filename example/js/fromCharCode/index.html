@@ -1,0 +1,28 @@
+<!--#include virtual="/tpl/header.html"-->
+<!--#include virtual="/tpl/link.html"-->
+<div id="chineseCharacterEncoding"><input id="show" type="button" value="显示"></div>
+<!--#include virtual="/tpl/footer.html"-->
+<script type="text/javascript">
+    ;(function () {
+        var xChineseCharacterEncoding = document.getElementById('chineseCharacterEncoding');
+        var xShow = document.getElementById('show');
+        xShow.onclick = function () {
+            xShow.style.display = 'none';
+            var str = '';
+            for (var i = 19968; i <= 40869; i++) {
+                str += (String.fromCharCode(i) + i + ' ');
+            }
+            xChineseCharacterEncoding.innerHTML = str;
+            var xLogo = document.querySelector('.x-logo h1 a');
+            xLogo.innerHTML = String.fromCharCode(29066, 28385);
+        }
+    })();
+    /*
+    unicode编码范围：
+    汉字：[0x4e00,0x9fa5]（或十进制[19968,40869]）
+    数字：[0x30,0x39]（或十进制[48, 57]）
+    小写字母：[0x61,0x7a]（或十进制[97, 122]）
+    大写字母：[0x41,0x5a]（或十进制[65, 90]）
+    */
+</script>
+<!--#include virtual="/tpl/script.html"-->

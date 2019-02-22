@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<body>
+
+</body>
+<script>
+    const APPID = 'wx7616413796e6d9ca';
+    const APPSECRET = '9148ac2fc879f773608ff1121ae5062e';
+    axios({
+        url:'https://api.zukehouse.xyz/api/signature/signature?url=http://m.zukehouse.com',
+    }).then(function(response) {
+       console.log(response);
+    });
+    axios({
+        url:'https://api.weixin.qq.com/cgi-bin/token',
+        data: {
+            grant_type: 'client_credential',
+            appid: APPID,
+            secret: APPSECRET,
+        }
+    }).then(function(response) {
+        console.log(response);
+    });
+    let url = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7616413796e6d9ca&redirect_uri=https%3a%2f%2fapi.zukehouse.com%2f&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+</script>
+</html>

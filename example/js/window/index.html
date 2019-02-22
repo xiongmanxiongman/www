@@ -1,0 +1,14 @@
+<!--#include virtual="/tpl/header.html"-->
+<!--#include virtual="/tpl/link.html"-->
+<table id="windowPropName"></table>
+<!--#include virtual="/tpl/footer.html"-->
+<script>
+    var windowPropName = document.getElementById('windowPropName');
+    var str = '';
+    for (var propName in window) {
+        str+=`<tr><td>${propName}</td><td>${window[propName]}</td></tr>`;
+    }
+    windowPropName.innerHTML = str;
+    console.log(window);
+</script>
+<!--#include virtual="/tpl/script.html"-->

@@ -1,0 +1,53 @@
+<!--#include virtual="/tpl/header.html"-->
+<style>
+    #lazyLoad{
+        width: 667px; position: relative; top: 0; left: 0;
+    }
+    #lazyLoad img {
+        margin-bottom: 12px;
+        width: 667px; height: 406px;
+    }
+</style>
+<!--#include virtual="/tpl/link.html"-->
+<div id="lazyLoad">
+    <img _src="https://upload.ijilu.cn/images/lazyLoad/01.jpg" alt="01">
+    <img _src="https://upload.ijilu.cn/images/lazyLoad/02.jpg" alt="02">
+    <img _src="https://upload.ijilu.cn/images/lazyLoad/03.jpg" alt="03">
+    <img _src="https://upload.ijilu.cn/images/lazyLoad/04.jpg" alt="04">
+    <img _src="https://upload.ijilu.cn/images/lazyLoad/05.jpg" alt="05">
+    <img _src="https://upload.ijilu.cn/images/lazyLoad/06.jpg" alt="06">
+    <img _src="https://upload.ijilu.cn/images/lazyLoad/07.jpg" alt="07">
+    <img _src="https://upload.ijilu.cn/images/lazyLoad/08.jpg" alt="08">
+    <img _src="https://upload.ijilu.cn/images/lazyLoad/09.jpg" alt="09">
+    <img _src="https://upload.ijilu.cn/images/lazyLoad/10.jpg" alt="10">
+</div>
+<!--#include virtual="/tpl/footer.html"-->
+<script>
+    function getPos(obj) {
+        var l = 0, t = 0;
+        while (obj.offsetTop||obj.offsetLeft) {
+            l += obj.offsetLeft;
+            t += obj.offsetTop;
+            obj = obj.offsetParent;
+        }
+        return {left: l, top: t};
+    }
+
+    window.onload = function () {
+        loadImages();
+    };
+    window.onresize = window.onscroll = loadImages;
+
+    function loadImages() {
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollBottom = scrollTop + document.documentElement.clientHeight;
+        var aImg = document.querySelectorAll('#lazyLoad img');
+        for (var i = 0; i < aImg.length; i++) {
+            var p = getPos(aImg[i]);
+            if (p.top < scrollBottom) {
+                aImg[i].src = aImg[i].getAttribute('_src');
+            }
+        }
+    }
+</script>
+<!--#include virtual="/tpl/script.html"-->

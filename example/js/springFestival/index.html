@@ -1,0 +1,35 @@
+<!--#include virtual="/tpl/header.html"-->
+<!--#include virtual="/tpl/link.html"-->
+距离2019年春节还有：<span id="springFestival"></span>
+<!--#include virtual="/tpl/footer.html"-->
+<script>
+    function toDou(n) {
+        return n < 10 ? '0' + n : '' + n;
+    }
+
+    var xSpringFestival = document.getElementById('springFestival');
+    var oDate = new Date();
+    oDate.setFullYear(2019, 1, 5);
+    oDate.setHours(0, 0, 0, 0);
+
+    function tick() {
+        var oNow = new Date();
+        var s = parseInt((oDate.getTime() - oNow.getTime()) / 1000);
+        if (s < 0) {
+            xSpringFestival.innerHTML = '已结束';
+            clearInterval(timer);
+            return;
+        }
+        var d = parseInt(s / 86400);
+        s %= 86400;
+        var h = parseInt(s / 3600);
+        s %= 3600;
+        var m = parseInt(s / 60);
+        s %= 60;
+        xSpringFestival.innerHTML = d + '天' + toDou(h) + '小时' + toDou(m) + '分' + toDou(s) + '秒';
+    }
+
+    var timer = setInterval(tick, 1000);
+    tick();
+</script>
+<!--#include virtual="/tpl/script.html"-->

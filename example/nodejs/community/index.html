@@ -1,0 +1,310 @@
+<!--#include virtual="/tpl/header.html"-->
+<link rel="stylesheet" href="//npm.ijilu.cn/bulma/css/bulma.css?v=<!--#echo var='ver'-->">
+<link rel="stylesheet" href="//npm.ijilu.cn/select2/dist/css/select2.min.css?v=<!--#echo var='ver'-->">
+<style>
+    [v-cloak] {
+        display: none;
+    }
+
+    .container {
+        margin: 0;
+    }
+
+</style>
+<!--#include virtual="/tpl/link.html"-->
+<div class="container" id="container">
+    <!--导航-->
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="https://www.ijilu.cn/example/nodejs/community/">首页</a></li>
+            <li class="is-active"><a href="#" aria-current="page" v-cloak v-text="xBreadcrumb"></a></li>
+        </ul>
+    </nav>
+    <!--导航-结束-->
+    <!--社区列表-->
+    <div class="field" v-show="!xAddressShow" v-cloak>
+        <div class="tabs is-boxed">
+            <ul>
+                <li :class="{'is-active':xCommunityStatus=='success'}">
+                    <a @click="xFnChangeCommunityType('success')">
+                        <span class="tag is-success">有用</span>
+                    </a>
+                </li>
+                <li :class="{'is-active':xCommunityStatus=='warning'}">
+                    <a @click="xFnChangeCommunityType('warning')">
+                        <span class="tag is-warning">无用</span>
+                    </a>
+                </li>
+                <li :class="{'is-active':xCommunityStatus=='danger'}">
+                    <a @click="xFnChangeCommunityType('danger')">
+                        <span class="tag is-danger">危险</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+            <tr>
+                <th>状态</th>
+                <th>省份</th>
+                <th>城市</th>
+                <th>区域</th>
+                <th>小区名称</th>
+                <th>描述</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <th>状态</th>
+                <th>省份</th>
+                <th>城市</th>
+                <th>区域</th>
+                <th>小区名称</th>
+                <th>描述</th>
+                <th>操作</th>
+            </tr>
+            </tfoot>
+            <tbody>
+            <tr v-show="xCommunityList.length==0" v-cloak>
+                <td colspan="7">
+                    <span class="notification is-danger">没有找到,新建一个吧</span>
+                </td>
+            </tr>
+            <tr v-for="(item,index) in xCommunityList" v-cloak>
+                <td><span :class="['tag','is-'+item.status]">{{item.status}}</span></td>
+                <td>{{item.provinces}}</td>
+                <td>{{item.cities}}</td>
+                <td>{{item.areas}}</td>
+                <td><a @click="xFnGetAddressList(1,item.ID)" href="javascript:;">{{item.community}}</a></td>
+                <td>{{item.description}}</td>
+                <td>
+                    <a>
+                        <span class="tag is-success" @click="xFnSetCommunityType(item.ID,'success')">有用</span>
+                    </a>
+                    &nbsp;
+                    <a>
+                        <span class="tag is-warning" @click="xFnSetCommunityType(item.ID,'warning')">无用</span>
+                    </a>
+                    &nbsp;
+                    <a>
+                        <span class="tag is-danger" @click="xFnSetCommunityType(item.ID,'danger')">危险</span>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+            <a :disabled="!(xCommunityPageCount>1&&xCommunityNowPage!=1)" @click="xFnCommunityPrevPage()"
+               class="pagination-previous">上一页</a>
+            <a :disabled="!(xCommunityPageCount>1&&xCommunityNowPage!=xCommunityPageCount)"
+               @click="xFnCommunityNextPage()" class="pagination-next">下一页</a>
+            <ul class="pagination-list">
+                <li><a @click="xFnGetCommunityList(n)"
+                       :class="{ 'is-current':n==xCommunityNowPage,'pagination-link':true}"
+                       v-for="n in xCommunityPageCount" v-cloak aria-label="Goto page {{n}}">{{n}}</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!--社区列表-结束-->
+    <!--社区-新建查询-->
+    <div class="field" v-show="!xAddressShow" v-cloak>
+        <div class="field">
+            <label class="label">区域</label>
+            <div class="field is-grouped">
+                <p class="control" id="xProvinces" v-cloak>
+                    <select></select>
+                </p>
+                <p class="control" id="xCities" style="display: none;">
+                    <select></select>
+                </p>
+                <p class="control" id="xAreas" style="display: none;">
+                    <select></select>
+                </p>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">社区名称</label>
+            <div class="control">
+                <input @keyup='xFnGetCommunityList(1)' v-model="xCommunity" class="input" type="text"
+                       placeholder="请输入社区名称搜索">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">社区描述</label>
+            <div class="control">
+                <textarea v-model="xCommunityDescription" class="textarea"
+                          placeholder="请填写社区描述"></textarea>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <div class="control">
+                <button @click="xFnCommunityAdd" class="button is-link">新建社区</button>
+            </div>
+        </div>
+    </div>
+    <!--社区-新建查询-结束-->
+    <!--通讯录-列表-->
+    <div class="field" v-show="xAddressShow" v-cloak>
+        <div class="tabs is-boxed">
+            <ul>
+                <li :class="{'is-active':xAddressStatus=='success'}">
+                    <a @click="xFnChangeAddressType('success')">
+                        <span class="tag is-success">有用</span>
+                    </a>
+                </li>
+                <li :class="{'is-active':xAddressStatus=='warning'}">
+                    <a @click="xFnChangeAddressType('warning')">
+                        <span class="tag is-warning">无用</span>
+                    </a>
+                </li>
+                <li :class="{'is-active':xAddressStatus=='danger'}">
+                    <a @click="xFnChangeAddressType('danger')">
+                        <span class="tag is-danger">危险</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+            <tr>
+                <th>状态</th>
+                <th>名称</th>
+                <th>联系方式</th>
+                <th>地址</th>
+                <th>描述</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <th>状态</th>
+                <th>名称</th>
+                <th>联系方式</th>
+                <th>地址</th>
+                <th>描述</th>
+                <th>操作</th>
+            </tr>
+            </tfoot>
+            <tbody>
+            <tr v-show="xAddressList.length==0" v-cloak>
+                <td colspan="6">
+                    <span class="notification is-danger">没有找到,新建一个吧</span>
+                </td>
+            </tr>
+            <tr v-for="(item,index) in xAddressList" v-cloak>
+                <td><span :class="['tag','is-'+item.status]">{{item.status}}</span></td>
+                <td>{{item.name}}</td>
+                <td>{{item.tel}}</td>
+                <td>{{item.address}}</td>
+                <td>{{item.description}}</td>
+                <td> &nbsp;
+                    <a>
+                        <span class="tag is-success" @click="xFnSetAddressType(item.ID,'success')">有用</span>
+                    </a>
+                    &nbsp;
+                    <a>
+                        <span class="tag is-warning" @click="xFnSetAddressType(item.ID,'warning')">无用</span>
+                    </a>
+                    &nbsp;
+                    <a>
+                        <span class="tag is-danger" @click="xFnSetAddressType(item.ID,'danger')">危险</span>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+            <a :disabled="!(xAddressPageCount>1&&xAddressNowPage!=1)" @click="xFnAddressPrevPage()"
+               class="pagination-previous">上一页</a>
+            <a :disabled="!(xAddressPageCount>1&&xAddressNowPage!=xAddressPageCount)" @click="xFnAddressNextPage()"
+               class="pagination-next">下一页</a>
+            <ul class="pagination-list">
+                <li><a @click="xFnGetAddressList(n,xCommunityID)"
+                       :class="{ 'is-current':n==xAddressNowPage,'pagination-link':true}"
+                       v-for="n in xAddressPageCount" v-cloak aria-label="Goto page {{n}}">{{n}}</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!--通讯录-列表-结束-->
+    <!--通讯录-社区基本信息-->
+    <div class="field" v-show="xAddressShow" v-cloak>
+        <div class="field">
+            <label class="label">区域</label>
+            <div class="control">
+                <div class="select">
+                    <select disabled>
+                        <option>{{xProvinces}}</option>
+                    </select>
+                </div>
+                <div class="select">
+                    <select disabled>
+                        <option>{{xCities}}</option>
+                    </select>
+                </div>
+                <div class="select">
+                    <select disabled>
+                        <option>{{xAreas}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">社区名称</label>
+            <div class="control">
+                <input disabled class="input" type="text" :value="xCommunity">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">社区描述</label>
+            <div class="control">
+                <textarea disabled class="textarea">{{xCommunityDescription}}</textarea>
+            </div>
+        </div>
+    </div>
+    <!--通讯录-社区基本信息-结束-->
+    <!--通讯录-新建查询-->
+    <div class="field" v-show="xAddressShow" v-cloak>
+        <div class="field">
+            <label class="label">通讯录名称</label>
+            <div class="control">
+                <input @keyup="xFnGetAddressList(1,xCommunityID)" v-model="xAddressName" class="input"
+                       type="text" placeholder="请输入通讯录名称">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">联系方式</label>
+            <div class="control">
+                <input @keyup="xFnGetAddressList(1,xCommunityID)" v-model="xAddressTel" class="input"
+                       type="text" placeholder="请输入联系方式">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">详细地址</label>
+            <div class="control">
+                <input v-model="xAddress" class="input" type="text" placeholder="请输入详细地址">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">通讯录描述</label>
+            <div class="control">
+                <textarea v-model="xAddressDescription" class="textarea" placeholder="请输入通讯录描述"></textarea>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <div class="control">
+                <button @click="xFnAddressAdd" class="button is-link">新建通讯录</button>
+            </div>
+        </div>
+    </div>
+    <!--通讯录-新建查询-结束-->
+</div>
+<!--#include virtual="/tpl/footer.html"-->
+<script src="//npm.ijilu.cn/jquery/dist/jquery.min.js?v=<!--#echo var='ver'-->"></script>
+<script src="//npm.ijilu.cn/select2/dist/js/select2.min.js?v=<!--#echo var='ver'-->"></script>
+<script src="//npm.ijilu.cn/axios/dist/axios.min.js?v=<!--#echo var='ver'-->"></script>
+<script src="//npm.ijilu.cn/vue/dist/vue.min.js?v=<!--#echo var='ver'-->"></script>
+<script src="//npm.ijilu.cn/vue-router/dist/vue-router.min.js?v=<!--#echo var='ver'-->"></script>
+<script src="//bower.ijilu.cn/Administrative-divisions-of-China-1.3.2/dist/pca-code.js?v=<!--#echo var='ver'-->"></script>
+<script src="index.js?v=<!--#echo var='ver'-->"></script>
+<!--#include virtual="/tpl/script.html"-->

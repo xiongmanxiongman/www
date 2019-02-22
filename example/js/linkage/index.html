@@ -1,0 +1,61 @@
+<!--#include virtual="/tpl/header.html"-->
+<!--#include virtual="/tpl/link.html"-->
+<select id="sel1"></select>省
+<select id="sel2"></select>市
+<input type="button" value="提交" id="btn1"/>
+<!--#include virtual="/tpl/footer.html"-->
+<script>
+    var data = {
+        'bj': {
+            name: '北京市', child: [
+                {code: 'cp', name: '昌平区'},
+                {code: 'cy', name: '朝阳区'},
+                {code: 'dx', name: '大兴区'},
+                {code: 'hd', name: '海淀区'}
+            ]
+        },
+        'hn': {
+            name: '湖南省', child: [
+                {code: 'cs', name: '长沙'},
+                {code: 'xt', name: '湘潭市'},
+                {code: 'yy', name: '益阳市'},
+                {code: 'js', name: '津市'}
+            ]
+        },
+        'sh': {
+            name: '上海市', child: [
+                {code: 'zb', name: '闸北区'},
+                {code: 'ja', name: '静安区'},
+                {code: 'pd', name: '浦东区'},
+                {code: 'xh', name: '徐汇区'}
+            ]
+        }
+    };
+    window.onload = function () {
+        var oSel1 = document.getElementById('sel1');
+        var oSel2 = document.getElementById('sel2');
+        var oBtn = document.getElementById('btn1');
+        //生成省列表
+        for (var code in data) {
+            var op = new Option(data[code].name, code);
+            oSel1.options.add(op);
+        }
+
+        function changeSelect() {
+            oSel2.options.length = 0;
+            for (var i = 0; i < data[oSel1.value].child.length; i++) {
+                //{code: 'cp', name: '昌平区'}
+                var op = new Option(data[oSel1.value].child[i].name, data[oSel1.value].child[i].code);
+                oSel2.options.add(op);
+            }
+        }
+
+        oSel1.onchange = changeSelect;
+        changeSelect();
+        oBtn.onclick = function () {
+            alert('选中的值：' + oSel1.value + ',' + oSel2.value);
+            alert('选中的字：' + oSel1.options[oSel1.selectedIndex].text + ',' + oSel2.options[oSel2.selectedIndex].text)
+        };
+    };
+</script>
+<!--#include virtual="/tpl/script.html"-->

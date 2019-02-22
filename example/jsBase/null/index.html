@@ -1,0 +1,19 @@
+<!--#include virtual="/example/jsBase/jsBaseHeader.html"-->
+<table class="tb">
+    <thead>
+    <tr>
+        <th>公式</th>
+        <th>结果</th>
+    </tr>
+    </thead>
+    <tbody id="tb"></tbody>
+</table>
+<!--#include virtual="/tpl/footer.html"-->
+<script>
+    var oTb = document.getElementById('tb');
+    var str = '';
+    str += '<tr><td>typeof null</td><td>' + (typeof null) + '</td></tr>';
+    str += '<tr><td>null == undefined</td><td>' + (null == undefined) + '</td></tr>';
+    oTb.innerHTML = str;
+</script>
+<!--#include virtual="/tpl/script.html"-->

@@ -1,0 +1,225 @@
+.fn {
+    border-bottom: 1px solid #E5EBF1;
+}
+
+.fn a {
+    display: block;
+    border: 1px solid #BBCBDF;
+    width: 112px;
+    color: #536083;
+    line-height: 32px;
+    text-align: center;
+}
+
+.fn a:hover {
+    color: #3083EB;
+    background: #E3F0FC;
+    border: 1px solid #fff;
+}
+
+.fn .item {
+    float: left;
+    margin: 0 28px 28px 0;
+}
+
+.fn input {
+    height: 28px;
+    line-height: 28px;
+    width: 224px;
+    padding: 0 6px;
+}
+
+.tb table {
+    width: 100%;
+}
+
+.tb th {
+    text-align: left;
+    background: #E3F0FC;
+    line-height: 34px;
+    padding: 3px 14px;
+}
+
+.tb td {
+    line-height: 34px;
+    cursor: pointer;
+    padding: 3px 14px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.tb tr:nth-child(odd) {
+    background: #F6FAFD;
+}
+
+.tb tr:hover {
+    color: #3083EB;
+    background: #E3F0FC;
+}
+
+.tb tr:hover th {
+    color: #333;
+    background: #E3F0FC;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding: 5px 14px;
+}
+
+.pagination .previous {
+    flex-shrink: 0;
+    display: none;
+}
+
+.pagination .next {
+    flex-shrink: 0;
+    display: none;
+}
+
+.paginationList {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+
+}
+
+.paginationList li {
+    margin: 10px 0;
+}
+
+.pagination a {
+    display: inline-block;
+    line-height: 28px;
+    margin: 0 10px;
+    padding: 0 10px;
+    text-align: center;
+    border: 1px solid #BBCBDF;
+    color: #536083;
+}
+.pagination .on{
+    background: #E3F0FC;
+    color: #3083EB;
+    border: 1px solid #fff;
+}
+.pagination .none{
+    background: #fff;
+    color: #fff;
+    border: 1px solid #fff;
+}
+.pagination .off{
+    background: #F6FAFD;
+    color: #E5E5E5;
+    border: 1px solid #F6FAFD;
+}
+.pagination .off:hover{
+    background: #F6FAFD;
+    color: #E5E5E5;
+    border: 1px solid #F6FAFD;
+}
+
+.pagination a:hover {
+    background: #E3F0FC;
+    color: #3083EB;
+    border: 1px solid #fff;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    border: 1px solid #BBCBDF;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 448px;
+    height: 420px;
+    background: #fff;
+}
+
+.popup .tit {
+    height: 42px;
+}
+
+.popup .tit p {
+    line-height: 34px;
+}
+
+.popup .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.popup .close a {
+    text-align: center;
+    line-height: 42px;
+    display: block;
+    width: 42px;
+    font-size: 22px;
+    font-weight: normal;
+    color: #3083EB;
+}
+
+.popup .close a:hover {
+    color: #ff3300;
+    background: #E3F0FC;
+}
+
+.popup dd input {
+    height: 28px;
+    line-height: 28px;
+    width: 224px;
+    padding: 0 6px;
+}
+
+.popup dd textarea {
+    height: 84px;
+    line-height: 28px;
+    width: 224px;
+    padding: 0 6px;
+    resize: none;
+}
+
+.popup dl {
+    margin-bottom: 28px;
+}
+
+.popup dt {
+    float: left;
+    width: 112px;
+    text-align: right;
+}
+
+.popup dt strong {
+    line-height: 34px;
+    padding-right: 14px;
+}
+
+.popup dd {
+    float: left;
+}
+
+.popup .btn {
+    text-align: center;
+    padding-bottom: 28px;
+}
+
+.popup .btn a {
+    display: none;
+    margin: 0 auto;
+    border: 1px solid #BBCBDF;
+    width: 112px;
+    color: #536083;
+    line-height: 34px;
+}
+
+.popup .btn a:hover {
+    color: #3083EB;
+    background: #E3F0FC;
+    border: 1px solid #fff;
+}

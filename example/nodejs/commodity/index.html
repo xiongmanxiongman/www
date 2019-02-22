@@ -1,0 +1,180 @@
+<!--#include virtual="/tpl/header.html"-->
+<link rel="stylesheet" href="//npm.ijilu.cn/element-ui/lib/theme-chalk/index.css?v=<!--#echo var='ver'-->">
+<link rel="stylesheet" href="index.css?v=<!--#echo var='ver'-->">
+<!--#include virtual="/tpl/link.html"-->
+<div id="app">
+    <template>
+        <el-form :inline="true" :model="formQuery">
+            <el-form-item label="商品名称">
+                <el-input v-model="formQuery.name" placeholder="商品名称"></el-input>
+            </el-form-item>
+            <el-form-item label="价格区间">
+                <el-input style="width: 80px;" v-model="formQuery.priceStart" placeholder="起"></el-input>
+                -
+                <el-input style="width: 80px;" v-model="formQuery.priceEnd" placeholder="止"></el-input>
+            </el-form-item>
+            <el-form-item label="销量区间">
+                <el-input style="width: 80px;" v-model="formQuery.salesVolumeStart" placeholder="起"></el-input>
+                -
+                <el-input style="width: 80px;" v-model="formQuery.salesVolumeEnd" placeholder="止"></el-input>
+            </el-form-item>
+            <el-form-item label="商品分类">
+                <el-select v-model="formQuery.classify" clearable placeholder="商品分类">
+                    <el-option
+                            v-for="item in classifyData"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+        </el-form>
+    </template>
+    <template>
+        <el-row style="margin-bottom: 14px;">
+            <el-button plain @click="handleDel('batch')">批量删除</el-button>
+            <el-button @click="handleEdit()" type="primary">新建</el-button>
+        </el-row>
+    </template>
+    <template>
+        <el-table
+                ref="multipleTable"
+                :data="tableData"
+                tooltip-effect="dark"
+                @selection-change="handleSelectionChange">
+            <el-table-column
+                    type="selection"
+                    width="50">
+            </el-table-column>
+            <el-table-column
+                    prop="id"
+                    label="ID"
+                    sortable
+                    width="60">
+            </el-table-column>
+            <el-table-column
+                    label="图片"
+                    width="200">
+                <template slot-scope="scope"><img class="img1" :src='"//upload.ijilu.cn"+scope.row.src'></template>
+            </el-table-column>
+            <el-table-column
+                    prop="name"
+                    label="商品名称"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="price"
+                    label="价格"
+                    sortable
+                    width="120">
+            </el-table-column>
+            <el-table-column
+                    prop="discount"
+                    label="折后价"
+                    sortable
+                    width="120">
+            </el-table-column>
+            <el-table-column
+                    prop="salesVolume"
+                    label="销量"
+                    sortable
+                    width="120">
+            </el-table-column>
+            <el-table-column
+                    prop="classify"
+                    label="分类"
+                    :filters="classifyFilters"
+                    :filter-method="filterTag"
+                    filter-placement="bottom-end"
+                    width="120">
+            </el-table-column>
+            <el-table-column label="操作" width="180">
+                <template slot-scope="scope">
+                    <el-button
+                            size="mini"
+                            plain
+                            @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                    <el-button
+                            size="mini"
+                            type="primary"
+                            plain
+                            @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+    </template>
+    <template>
+        <div style="margin-top: 28px;">
+            <el-pagination
+                    background
+                    width="90%"
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="pagination.currentPage"
+                    :page-sizes="pagination.pageSizes"
+                    :page-size="pagination.pageSize"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :total="pagination.total">
+            </el-pagination>
+        </div>
+    </template>
+    <template>
+        <el-dialog title="添加商品" :visible.sync="dialogFormVisible">
+            <el-form :model="form" :rules="rules">
+                <el-form-item label="商品名称" prop="name" :label-width="formLabelWidth">
+                    <el-input v-model="form.name" placeholder="请输入商品名称"></el-input>
+                </el-form-item>
+                <el-form-item label="价格" prop="price" :label-width="formLabelWidth">
+                    <el-input v-model="form.price" placeholder="请输入商品价格"></el-input>
+                </el-form-item>
+                <el-form-item label="折扣后价格" prop="discount" :label-width="formLabelWidth">
+                    <el-input v-model="form.discount" placeholder="请输入商品折后价"></el-input>
+                </el-form-item>
+                <el-form-item label="分类" prop="classify" :label-width="formLabelWidth">
+                    <el-select v-model="form.classify" placeholder="请选择商品分类">
+                        <el-option
+                                v-for="item in classifyData"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="图片地址" prop="src" :label-width="formLabelWidth">
+                    <el-upload
+                            class="avatar-uploader"
+                            action="/api/koa/upload"
+                            :show-file-list="false"
+                            :on-success="handleAvatarSuccess"
+                            :before-upload="beforeAvatarUpload">
+                        <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                    </el-upload>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="handleSubmit()">确 定</el-button>
+            </div>
+        </el-dialog>
+    </template>
+    <template>
+        <el-dialog
+                title="提示"
+                :visible.sync="dialogVisible"
+                width="30%"
+                :before-close="handleClose">
+            <span>删了就没了</span>
+            <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible = false">取 消</el-button>
+            <el-button type="danger" @click="handleDel()">删 除</el-button>
+          </span>
+        </el-dialog>
+    </template>
+</div>
+<!--#include virtual="/tpl/footer.html"-->
+<script src="//npm.ijilu.cn/axios/dist/axios.min.js?v=<!--#echo var='ver'-->"></script>
+<script src="//npm.ijilu.cn/vue/dist/vue.min.js?v=<!--#echo var='ver'-->"></script>
+<script src="//npm.ijilu.cn/element-ui/lib/index.js?v=<!--#echo var='ver'-->"></script>
+<script src="index.js?v=<!--#echo var='ver'-->"></script>
+<!--#include virtual="/tpl/script.html"-->

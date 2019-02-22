@@ -1,0 +1,58 @@
+<!--#include virtual="/tpl/header.html"-->
+<style>
+    #waterfall ul {
+        float: left;
+        width: 30%;
+        margin-right: 3%;
+    }
+
+    #waterfall li {
+        margin-bottom: 28px;
+    }
+</style>
+<!--#include virtual="/tpl/link.html"-->
+<div id="waterfall" class="clearfix">
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+</div>
+<!--#include virtual="/tpl/footer.html"-->
+<script>
+    function rnd(n, m) {
+        return parseInt(n + Math.random() * (m - n));
+    }
+
+    function createLi() {
+        var oLi = document.createElement('li');
+        oLi.style.height = rnd(180, 360) + 'px';
+        oLi.style.background = 'rgba(' + rnd(0, 256) + ',' + rnd(0, 256) + ',' + rnd(0, 256) + ',' + Math.random() + ')';
+        return oLi;
+    }
+
+    var xWaterfall = document.getElementById('waterfall');
+    var oUl = xWaterfall.children;
+
+    function create40() {
+        for (var i = 0; i < 40; i++) {
+            var oLi = createLi();
+            var arr = [];
+            for (var j = 0; j < oUl.length; j++) {
+                arr.push(oUl[j]);
+            }
+            arr.sort(function (u1, u2) {
+                return u1.offsetHeight - u2.offsetHeight;
+            });
+            arr[0].appendChild(oLi);
+        }
+    }
+
+    create40();
+    window.onscroll = window.onresize = function () {
+        var iMaxScrollT = document.body.scrollHeight - document.documentElement.clientHeight - 500;
+        var scrollT = document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollT >= iMaxScrollT) {
+            create40();
+        }
+    };
+</script>
+<!--#include virtual="/tpl/script.html"-->

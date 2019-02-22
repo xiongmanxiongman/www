@@ -1,0 +1,19 @@
+<!--#include virtual="/tpl/header.html"-->
+<!--#include virtual="/tpl/link.html"-->
+<div id="clientWidth"></div>
+<!--#include virtual="/tpl/footer.html"-->
+<script>
+    ;(function () {
+        var xClientWidth = document.getElementById('clientWidth');
+        var str = '';
+        var w = 0;
+        var h = 0;
+        window.onload = window.onresize = function () {
+            w = document.documentElement.clientWidth;
+            h = document.documentElement.clientHeight;
+            str += w + '*' + h + '<br />';
+            xClientWidth.innerHTML = str;
+        };
+    })();
+</script>
+<!--#include virtual="/tpl/script.html"-->

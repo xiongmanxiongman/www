@@ -1,0 +1,110 @@
+<!--#include virtual="/tpl/header.html"-->
+<style>
+
+</style>
+<!--#include virtual="/tpl/link.html"-->
+<div class="c1 c2 "></div>
+
+<!--#include virtual="/tpl/footer.html"-->
+<script>
+
+
+</script>
+
+<script>
+
+   function timeFormat(time) {
+       let date = new Date(time);
+       let y = date.getFullYear();
+       let m = (date.getMonth()+1)>=10?(date.getMonth()+1):'0'+(date.getMonth()+1);
+       let d = date.getDate()>=10?(date.getDate()):'0'+(date.getDate());
+       let hh = date.getHours()>=10?(date.getHours()):'0'+(date.getHours());
+       let mm = date.getMinutes()>=10?date.getMinutes():'0'+date.getMinutes();
+       let ss = date.getSeconds()>=10?date.getSeconds():'0'+date.getSeconds();
+       return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+   }
+   let date = new Date();
+   let m = date.getMonth()+1;
+   date.setMonth(m);
+
+   console.log(timeFormat(date));
+
+//
+//    /*let date = new Date();
+//    date.setHours(0,0,0,0);
+//    console.log(timeFormat(date));
+//    console.log(date.setTime(date));
+//    date.setDate(date.getDate()+1);
+//    console.log(timeFormat(date));
+//    console.log(date.setTime(date));
+//    date.setDate(date.getDate()-7);
+//    console.log(timeFormat(date));
+//    console.log(date.setTime(date));*/
+//
+//    let startTime = 0;
+//    let endTime = 0;
+//
+//
+//    let date = new Date();
+//    date.setHours(0,0,0,0);
+//    //今天
+//    /*startTime = date.setTime(date);
+//    date.setDate(date.getDate()+1);
+//    endTime = date.setTime(date);*/
+//    //昨天
+//    /*endTime = date.setTime(date);
+//    date.setDate(date.getDate()-1);
+//    startTime = date.setTime(date);*/
+//    //近7天
+//    /*date.setDate(date.getDate()+1);
+//    endTime = date.setTime(date);
+//    date.setDate(date.getDate()-7);
+//    startTime = date.setTime(date);*/
+//    //近30天
+//    /*date.setDate(date.getDate()+1);
+//    endTime = date.setTime(date);
+//    date.setDate(date.getDate()-30);
+//    startTime = date.setTime(date);*/
+//    //本月
+//    date.setDate(date.getDate()+1);
+//    endTime = date.setTime(date);
+//    date.setDate(1);
+//    startTime = date.setTime(date);
+//    //本年
+//    /*date.setDate(date.getDate()+1);
+//    endTime = date.setTime(date);
+//    date.setMonth(0,1);
+//    startTime = date.setTime(date);*/
+//    //上年度
+//    /*date.setMonth(0,1);
+//    endTime = date.setTime(date);
+//    date.setFullYear(date.getFullYear()-1);
+//    startTime = date.setTime(date);*/
+//    //上个月
+//    /*date.setDate(1);
+//    endTime = date.setTime(date);
+//    date.setMonth(date.getMonth()-1);
+//    startTime = date.setTime(date);*/
+//
+//
+//
+//
+//
+//
+//    console.log(timeFormat(startTime));
+//    console.log(timeFormat(endTime));
+//
+//
+//
+
+
+
+
+
+
+
+
+
+
+</script>
+<!--#include virtual="/tpl/script.html"-->

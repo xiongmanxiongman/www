@@ -1,0 +1,26 @@
+<!--#include virtual="/example/jsBase/jsBaseHeader.html"-->
+<table class="tb">
+    <thead>
+    <tr>
+        <th>公式</th>
+        <th>结果</th>
+    </tr>
+    </thead>
+    <tbody id="tb"></tbody>
+</table>
+<!--#include virtual="/tpl/footer.html"-->
+<script>
+    var oTb = document.getElementById('tb');
+    var str = '';
+    str += '<tr><td>5 > 3</td><td>' + (5 > 3) + '</td></tr>';
+    str += '<tr><td>5 < 3</td><td>' + (5 < 3) + '</td></tr>';
+    str += '<tr><td>"Brick" < "alphabet"</td><td>' + ("Brick" < "alphabet") + '</td></tr>';
+    str += '<tr><td>"Brick".toLowerCase() < "alphabet".toLowerCase()</td><td>' + ("Brick".toLowerCase() < "alphabet".toLowerCase()) + '</td></tr>';
+    str += '<tr><td>"23" < "3"</td><td>' + ("23" < "3") + '</td></tr>';
+    str += '<tr><td>"23" < 3</td><td>' + ("23" < 3) + '</td></tr>';
+    str += '<tr><td>"a" < 3</td><td>' + ("a" < 3) + '</td></tr>';//false because "a" becomes NaN
+    str += '<tr><td>NaN < 3</td><td>' + (NaN < 3) + '</td></tr>';
+    str += '<tr><td>NaN >= 3</td><td>' + (NaN >= 3) + '</td></tr>';
+    oTb.innerHTML = str;
+</script>
+<!--#include virtual="/tpl/script.html"-->

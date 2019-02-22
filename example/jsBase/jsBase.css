@@ -1,0 +1,19 @@
+.x-content .tb {
+    border: 1px solid #ccc;
+    margin-bottom: 14px;
+}
+.x-content .tb td, .x-content .tb th {
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    padding: 6px 14px;
+}
+.x-content p{
+    margin-bottom: 14px;
+}
+.x-content .pre{
+    font-family: Consolas, "Courier New", Courier, FreeMono, monospace;
+    font-size: 14px;
+    border-bottom:1px dashed #3083EB;
+    padding-bottom: 14px;
+    margin: 0 0 14px 0;
+}
